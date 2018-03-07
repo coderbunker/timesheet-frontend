@@ -19,7 +19,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the
   // Google Sheets API.
-  authorize(JSON.parse(content), listMajors);
+  authorize(JSON.parse(content), append, listMajors);
 });
 
 /**
@@ -105,7 +105,7 @@ function storeToken(token) {
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
 function listMajors(auth) {
-  // console.log('list majors')
+  console.log('list majors')
   // console.log(auth)
   var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
@@ -130,3 +130,31 @@ function listMajors(auth) {
     }
   });
 }
+
+function append(auth) {
+  console.log('append')
+  console.log(auth)
+  var data = [["welcome", "to", "coderbunker"]];
+    var body = {
+      values: data
+    };
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.append({
+    auth: auth,
+    resource: body,
+    valueInputOption: "USER_ENTERED",
+    spreadsheetId: '1Zjp8boh5oDQKz4M4rRIaO8wOoZYaJzpnDvqh12L80jY',
+    range: 'Class Data!A2:E',
+  }, function(err, response) {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+    console.log("data successfully appended", response)
+     
+  });
+}
+    
+      
+      
+    
