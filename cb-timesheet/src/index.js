@@ -4,5 +4,5 @@ import './index.css';
 import RootContainer from './RootContainer';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<RootContainer />, document.getElementById('root'));
+// ReactDOM.render(<RootContainer />, document.getElementById('root'));
 registerServiceWorker();
