@@ -8,11 +8,11 @@ The File:
 
 Must contain access token credentials in this format: 
 
-{ "access_token": “THE_ACCESS_TOKEN_SENT_TO_REDIRECT_URI",
+{ "access_token": “THE_ACCESS_TOKEN_SENT_TO_YOUR_REDIRECT_URI",
 "token_type": "Bearer",
 "expires_in": 3600 }
 
-Note:  The access token expires relatively quickly, so after you send a request for the token from Google, the next steps should be taken relatively quickly.
+Note:  The access token expires, so after you send a request for the token from Google, the next steps should be taken relatively quickly.
 
 Sending a request for the token: 
 

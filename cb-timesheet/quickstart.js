@@ -150,7 +150,8 @@ function append(auth) {
       console.log('The API returned an error: ' + err);
       return;
     }
-    console.log("data successfully appended", response)
+    console.log(response);
+    console.log("+_+_+_+_+_+_data successfully appended_+_+_+_+_+_+_+_+")
      
   });
 }

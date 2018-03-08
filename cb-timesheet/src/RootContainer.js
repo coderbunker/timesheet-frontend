@@ -8,13 +8,7 @@ import actions from './actions';
 import App from './App';
 import * as Connectors from './connectors';
 
-//To be able to use a Router if needed
 
-import { 
-  Route,
-  Link,
-  HashRouter 
-} from 'react-router-dom';
 
 //To get data from postgraphile server
 import { ApolloClient } from 'apollo-client';
@@ -47,11 +41,11 @@ export default class rootContainer extends Component {
   render(){
     return (
       <ApolloProvider client={client}>
-        <HashRouter>
+        
           <App store={store}>
             <Connectors.ProjectView/>
           </App>
-        </HashRouter>
+        
       </ApolloProvider>
     )
   }
