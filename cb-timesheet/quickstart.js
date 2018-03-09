@@ -131,30 +131,30 @@ function listMajors(auth) {
   });
 }
 
-function append(auth) {
-  console.log('append')
-  console.log(auth)
-  var data = [["welcome", "to", "coderbunker"]];
-    var body = {
-      values: data
-    };
-  var sheets = google.sheets('v4');
-  sheets.spreadsheets.values.append({
-    auth: auth,
-    resource: body,
-    valueInputOption: "USER_ENTERED",
-    spreadsheetId: '15T--7tRLkgJsc6VZbiSxPcWHF882hegzmr_Q7eF24Ak',
-    range: 'Class Data!A2:E',
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    console.log(response);
-    console.log("+_+_+_+_+_+_data successfully appended_+_+_+_+_+_+_+_+")
+// function append(auth) {
+//   console.log('append')
+//   console.log(auth)
+//   var data = [["welcome", "to", "coderbunker"]];
+//     var body = {
+//       values: data
+//     };
+//   var sheets = google.sheets('v4');
+//   sheets.spreadsheets.values.append({
+//     auth: auth,
+//     resource: body,
+//     valueInputOption: "USER_ENTERED",
+//     spreadsheetId: '15T--7tRLkgJsc6VZbiSxPcWHF882hegzmr_Q7eF24Ak',
+//     range: 'Class Data!A2:E',
+//   }, function(err, response) {
+//     if (err) {
+//       console.log('The API returned an error: ' + err);
+//       return;
+//     }
+//     console.log(response);
+//     console.log("+_+_+_+_+_+_data successfully appended_+_+_+_+_+_+_+_+")
      
-  });
-}
+//   });
+// }
     
       
       
