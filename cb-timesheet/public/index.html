@@ -47,8 +47,7 @@
       // the API or https://developers.google.com/people/v1/how-tos/authorizing
       // for details.
       var scopes = 'https://www.googleapis.com/auth/spreadsheets';
-      var authorizeButton = document.getElementById('authorize-button');
-      var signoutButton = document.getElementById('signout-button');
+      
       function handleClientLoad() {
         console.log('handle client load')
         // Load the API client and auth2 library
@@ -68,21 +67,27 @@
           gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
           // Handle the initial sign-in state.
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          onSignIn(gapi.auth2.getAuthInstance())
           authorizeButton.onclick = handleAuthClick;
           signoutButton.onclick = handleSignoutClick;
         });
       }
       function updateSigninStatus(isSignedIn) {
-        console.log('update sign in status')
+      var authorizeButton = document.getElementById('authorize-button');
+      var signoutButton = document.getElementById('signout-button');
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          alert('thanks for waiting.  Please enter your time...')
+          alert('thanks for waiting.  Please enter your time')
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
         }
       }
+      function onSignIn(googleUser) {
+        console.log(googleUser)
+      };
+
       function handleAuthClick(event) {
         console.log('handle auth click')
         gapi.auth2.getAuthInstance().signIn();
@@ -94,7 +99,7 @@
       // Load the API and make an API call. 
       
       
-
+      //submit form should use spreadsheet.values.get method to verify that all of the cells in the last row are filled in.  If they are not, values.append into the row that was checked by values.get  values.clear?
       function submitForm() {
         var date = document.getElementById("date").value
         var project = document.getElementById("projectName").value;
@@ -123,54 +128,57 @@
     </script>
   </head>
   <body>
-    <h1>Welcome to CoderBunker Time-Entry-Project</h1>
+    <h1>CoderBunker Time-Entry-Project</h1>
 
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" onClick="handleAuthClick()">Authorize</button>
-    <button id="signout-button" onClick="handleSignoutClick()">Sign Out</button>
-    <div className="time-entry-widget">
-        <form id="time-entry">
+    <div class="container">
+      
+      <div class="time-entry-widget">
+        <button id="authorize-button" onClick="handleAuthClick()">Authorize</button>
+        <button id="signout-button" onClick="handleSignoutClick()">Sign Out</button>
+          <form id="time-entry">
 
-          <label for="date">Date:</label>
-          <input id="date" type="date"></input>
+            <label for="date">Date:</label>
+            <input id="date" type="date"></input>
 
 
-          <label for="startTime">Start Time: </label>
-          <input id="startTime" type="time"></input>
+            <label for="startTime">Start Time: </label>
+            <input id="startTime" type="time"></input>
 
-          <label for="stopTime">Stop Time:</label>
-          <input id="stopTime" type="time"></input>
+            <label for="stopTime">Stop Time:</label>
+            <input id="stopTime" type="time"></input>
 
-          <label for="project-name">Project Name:</label>
-          <select name="projectName" id="projectName">
-            <option>Atlas</option>
-            <option>Yedian</option>
-          </select>
+            <label for="project-name">Project Name:</label>
+            <select name="projectName" id="projectName">
+              <option>Atlas</option>
+              <option>Yedian</option>
+            </select>
 
-          <label for="resource">Contributer:</label>
-          <select name="resource" id="resource">
-            <option>Ricky</option>
-            <option>Stephan</option>
-            <option>Nelson</option>
-            <option>Fred</option>
-          </select>
+            <label for="resource">Contributer:</label>
+            <select name="resource" id="resource">
+              <option>Ricky</option>
+              <option>Stephan</option>
+              <option>Nelson</option>
+              <option>Fred</option>
+            </select>
 
-          <label>Activity:</label>
-          <input id="activity" type="text"></input>
+            <label>Activity:</label>
+            <input id="activity" type="text"></input>
 
-          <label>Task Name:</label>
-          <select name="taskName" id="taskName">
-            <option>React-Native</option>
-            <option>Setup</option>
-            <option>Planning</option>
-            <option>Processing</option>
-            <option>Recruitment</option>
-            <option>Core-Model</option>
-          </select>
-          <input type="button" name="submit" onClick="submitForm()" value="Submit" />
-        </form>
+            <label>Task Name:</label>
+            <select name="taskName" id="taskName">
+              <option>React-Native</option>
+              <option>Setup</option>
+              <option>Planning</option>
+              <option>Processing</option>
+              <option>Recruitment</option>
+              <option>Core-Model</option>
+            </select>
+            <input type="button" name="submit" onClick="submitForm()" value="Submit" />
+          </form>
+        </div>
+        <div id="root"></div>
       </div>
-    <div id="root"></div>
 
     <script async defer src="https://apis.google.com/js/api.js" 
       onload="this.onload=function(){};handleClientLoad()" 

@@ -1,28 +1,32 @@
-.App {
-  display: flex;
+body {
+	text-align: center;
+}
+.container {
+	display: inline-flex;
+	border: 2px solid pink;
+	width: 50%;
+}
+
+.time-entry-widget {
+	width: 50%;
+	border: 2px solid red;
+}
+
+#root {
+	width: 50%;
 }
 
 .dashboard {
-  display: flex;
-  
+  border: 2px solid blue;
+  width: 100%;
 }
 
-.time-entry-widget {
-  display: flex;
-  flex-direction: column;
-  margin-left: 50%;
-  
-}
-
-.time-entry-widget {
-
+.dashboard h3 {
+	text-align: center;
 }
 
 form {
   display: flex;
   flex-direction: column;
-}
-
-form label{
-  
+  width: 100%;
 }
