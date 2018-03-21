@@ -2,17 +2,21 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+var nameTest = "Ricky"
 
+var queryString = gql
+// console.log(queryString)
 const query = gql`{
-	allEntries(condition: {resource: "Ricky" projectName: "Yedian"}) {
-	  edges {
-	    node {
-	      resource
-	      projectName
-	      hoursWorked
-	    }
-	  }
-	} 
+	allEntries(condition: {resource: "Ricky"}) {
+    edges {
+      node {
+        projectName
+        hoursWorked
+        hourlyRate
+        total
+      }
+    }
+  } 
 }`
 	      
 //-=-=-=-=-   Running locally:  -=-=-=-=-=-=-
@@ -22,21 +26,31 @@ const query = gql`{
 //AND
 //then run this -->  node_modules/.bin/postgraphile -c $USER:localhost:5432/timesheet -s timedata -o
 class Dashboard extends Component {
+
   render() {
   	let { data } = this.props
   	console.log(data.allEntries)
   	console.log(window)
+    console.log(this.props)
+    console.log(data)
+    
     return(
       <div className="dashboard">
         <h3>TimeSheet Dashboard</h3>
-        <p>welcome, </p>
+        <p>Welcome, {window.name} </p>
       </div>
     )
   }
-}
+};
         
 
-Dashboard = graphql(query)(Dashboard)
+Dashboard = graphql(query, {
+  options: {
+    variables: {
+      resource: "Ricky"
+    }
+  }
+})(Dashboard)
 
 
 export default Dashboard

@@ -3,13 +3,13 @@ body {
 }
 .container {
 	display: inline-flex;
-	border: 2px solid pink;
+	border: 2px solid black;
 	width: 50%;
 }
 
 .time-entry-widget {
 	width: 50%;
-	border: 2px solid red;
+	border: 2px solid black;
 }
 
 #root {
@@ -17,7 +17,7 @@ body {
 }
 
 .dashboard {
-  border: 2px solid blue;
+  border: 2px solid black;
   width: 100%;
 }
 

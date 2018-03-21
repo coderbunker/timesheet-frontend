@@ -47,6 +47,7 @@
       // the API or https://developers.google.com/people/v1/how-tos/authorizing
       // for details.
       var scopes = 'https://www.googleapis.com/auth/spreadsheets';
+      var name;
       
       function handleClientLoad() {
         console.log('handle client load')
@@ -78,14 +79,15 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          alert('thanks for waiting.  Please enter your time')
+          
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
         }
       }
       function onSignIn(googleUser) {
-        console.log(googleUser)
+        var profile = googleUser.currentUser.get().getBasicProfile();
+        name = profile.getGivenName()
       };
 
       function handleAuthClick(event) {
@@ -123,6 +125,11 @@
         alert('time data succussfully added to spreadsheet')
         return false;
       }
+
+      window.onload = function() {
+        document.getElementById('resource').innerHTML = name
+        document.getElementById('resource').value = name
+      }
         
         
     </script>
@@ -137,6 +144,8 @@
         <button id="authorize-button" onClick="handleAuthClick()">Authorize</button>
         <button id="signout-button" onClick="handleSignoutClick()">Sign Out</button>
           <form id="time-entry">
+            <label for="resource">Contributer:</label>
+            <input name="resource" id="resource"></input>
 
             <label for="date">Date:</label>
             <input id="date" type="date"></input>
@@ -152,14 +161,6 @@
             <select name="projectName" id="projectName">
               <option>Atlas</option>
               <option>Yedian</option>
-            </select>
-
-            <label for="resource">Contributer:</label>
-            <select name="resource" id="resource">
-              <option>Ricky</option>
-              <option>Stephan</option>
-              <option>Nelson</option>
-              <option>Fred</option>
             </select>
 
             <label>Activity:</label>
