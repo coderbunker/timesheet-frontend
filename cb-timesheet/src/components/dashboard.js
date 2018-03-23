@@ -2,18 +2,17 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-var nameTest = "Ricky"
+var nameTest;
 
-var queryString = gql
-// console.log(queryString)
-const query = gql`{
-	allEntries(condition: {resource: "Ricky"}) {
+const TimeQuery = gql`query($resource: String!) {
+	allEntries {
     edges {
       node {
         projectName
         hoursWorked
         hourlyRate
         total
+        
       }
     }
   } 
@@ -26,28 +25,47 @@ const query = gql`{
 //AND
 //then run this -->  node_modules/.bin/postgraphile -c $USER:localhost:5432/timesheet -s timedata -o
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleNameChange(e) {
+    nameTest = e.target.value
+    console.log(nameTest)
+    console.log("form", e.target.value)
+  }
+  
 
   render() {
+    //the select elements value should trigger a dynamic graphql query
   	let { data } = this.props
   	console.log(data.allEntries)
-  	console.log(window)
-    console.log(this.props)
-    console.log(data)
+  	// console.log(window)
+    // console.log(this.props)
+    // console.log(data)
     
+        
     return(
       <div className="dashboard">
         <h3>TimeSheet Dashboard</h3>
         <p>Welcome, {window.name} </p>
+        <form onChange={this.handleNameChange}>
+          <select id="dropdown">
+            <option id="ricky" value="Ricky">Ricky</option>
+            <option id="nelson" value="Nelson">Nelson</option>
+            <option id=" fred" value="Fred">Fred</option>
+          </select>
+        </form>
       </div>
     )
   }
 };
-        
-
-Dashboard = graphql(query, {
+ 
+       
+Dashboard = graphql(TimeQuery, {
   options: {
     variables: {
-      resource: "Ricky"
+      resource: nameTest
     }
   }
 })(Dashboard)

@@ -68,4 +68,4 @@ class TimeEntryWidget extends Component {
   }
 }
 
-export default TimeEntryWidget
+// export default TimeEntryWidget
