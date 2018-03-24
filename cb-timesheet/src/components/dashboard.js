@@ -4,19 +4,21 @@ import gql from 'graphql-tag'
 
 var nameTest;
 
-const TimeQuery = gql`query($resource: String!) {
-	allEntries {
+const TimeQuery = gql `query{
+	allHoursByProjectAndResources {
     edges {
       node {
+        resource
         projectName
-        hoursWorked
-        hourlyRate
-        total
-        
+        sum {
+          hours
+          minutes
+        }
       }
     }
   } 
 }`
+        
 	      
 //-=-=-=-=-   Running locally:  -=-=-=-=-=-=-
 // If data.allEntries is undefined.  
@@ -31,17 +33,15 @@ class Dashboard extends Component {
 
   handleNameChange(e) {
     nameTest = e.target.value
-    console.log(nameTest)
-    console.log("form", e.target.value)
   }
   
 
   render() {
     //the select elements value should trigger a dynamic graphql query
   	let { data } = this.props
-  	console.log(data.allEntries)
+  	console.log(data)
   	// console.log(window)
-    // console.log(this.props)
+    console.log(this.props)
     // console.log(data)
     
         
@@ -61,14 +61,8 @@ class Dashboard extends Component {
   }
 };
  
-       
-Dashboard = graphql(TimeQuery, {
-  options: {
-    variables: {
-      resource: nameTest
-    }
-  }
-})(Dashboard)
+     
+Dashboard = graphql(TimeQuery)(Dashboard)
 
 
 export default Dashboard
