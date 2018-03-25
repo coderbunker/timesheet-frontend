@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-var nameTest;
+var nameTest = "Echo";
 
-const TimeQuery = gql `query{
-	allHoursByProjectAndResources {
+const TimeQuery = gql `query ($resource: String!){
+	allHoursByProjectAndResources (condition: {resource: $resource}) {
     edges {
       node {
         resource
@@ -62,7 +62,13 @@ class Dashboard extends Component {
 };
  
      
-Dashboard = graphql(TimeQuery)(Dashboard)
+Dashboard = graphql(TimeQuery, {
+  options: {
+    variables: {
+      resource: nameTest
+    }
+  }
+})(Dashboard)
 
 
 export default Dashboard
