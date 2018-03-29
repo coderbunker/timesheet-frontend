@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-var nameTest = "Echo";
-
+var nameTest;
 const TimeQuery = gql `query ($resource: String!){
 	allHoursByProjectAndResources (condition: {resource: $resource}) {
     edges {
@@ -19,56 +18,37 @@ const TimeQuery = gql `query ($resource: String!){
   } 
 }`
         
-	      
-//-=-=-=-=-   Running locally:  -=-=-=-=-=-=-
-// If data.allEntries is undefined.  
-//Make sure you have run these two lines in local 'timesheet-backend' directory
-//first run this-->  pg_ctl -D /usr/local/var/postgres start
-//AND
-//then run this -->  node_modules/.bin/postgraphile -c $USER:localhost:5432/timesheet -s timedata -o
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  handleNameChange(e) {
-    nameTest = e.target.value
-  }
-  
+class Dashboard extends Component {
 
   render() {
-    //the select elements value should trigger a dynamic graphql query
-  	let { data } = this.props
-  	console.log(data)
-  	// console.log(window)
-    console.log(this.props)
-    // console.log(data)
-    
-        
+    console.log(this.props.data.allHoursByProjectAndResources)
     return(
       <div className="dashboard">
         <h3>TimeSheet Dashboard</h3>
-        <p>Welcome, {window.name} </p>
-        <form onChange={this.handleNameChange}>
-          <select id="dropdown">
-            <option id="ricky" value="Ricky">Ricky</option>
-            <option id="nelson" value="Nelson">Nelson</option>
-            <option id=" fred" value="Fred">Fred</option>
-          </select>
-        </form>
+        <p id="welcome">Welcome, {window.name}</p>
+        <ul id="project-ul"> {this.props.data.allHoursByProjectAndResources ? this.props.data.allHoursByProjectAndResources.edges.map((timeData) => {
+          return <li id="project-li">Project: {timeData.node.projectName}
+          <p id="p-li">{timeData.node.sum.hours ? timeData.node.sum.hours : 0} hours and {timeData.node.sum.minutes ? timeData.node.sum.minutes: 0} minutes</p>
+          </li>
+          
+            
+          }) : console.log('sorry')}
+          
+        </ul>
       </div>
     )
   }
 };
+    
  
-     
-Dashboard = graphql(TimeQuery, {
+var DashboardWithData = graphql(TimeQuery, {
   options: {
     variables: {
-      resource: nameTest
+      resource: window.name
     }
   }
 })(Dashboard)
 
 
-export default Dashboard
+export default DashboardWithData

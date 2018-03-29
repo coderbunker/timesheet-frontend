@@ -19,6 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <title>Time Entry App</title>
     <!--
       This HTML file is a template.
@@ -88,6 +89,7 @@
       function onSignIn(googleUser) {
         var profile = googleUser.currentUser.get().getBasicProfile();
         name = profile.getGivenName()
+        console.log(name)
       };
 
       function handleAuthClick(event) {
@@ -121,69 +123,97 @@
           var result = response.result
           console.log(result)
         });
-        document.getElementById('time-entry').reset()
+        //want to be able to keep the date(and some other fields) during reset()
+        
+        document.getElementById('date').valueAsDate = new Date().getTimezoneOffset();
+        console.log('hello')
         alert('time data succussfully added to spreadsheet')
+        
+        
         return false;
       }
 
+      console.log(name)
       window.onload = function() {
         document.getElementById('resource').innerHTML = name
         document.getElementById('resource').value = name
       }
         
-        
     </script>
   </head>
   <body>
-    <h1>CoderBunker Time-Entry-Project</h1>
-
+    <div class="main-container">
+      <div id="banner-wrapper">
+        <div id="banner"></div>
+        <div id="banner-film"></div>
+        <h2 id="app-name">Time Entry</h2>
+      </div>
     <!--Add buttons to initiate auth sequence and sign out-->
-    <div class="container">
-      
-      <div class="time-entry-widget">
-        <button id="authorize-button" onClick="handleAuthClick()">Authorize</button>
-        <button id="signout-button" onClick="handleSignoutClick()">Sign Out</button>
-          <form id="time-entry">
-            <label for="resource">Contributer:</label>
-            <input name="resource" id="resource"></input>
+      <div class="time-entry-container">
+        
+        <div class="time-entry-widget">
+          <button id="authorize-button" onClick="handleAuthClick()">Authorize</button>
+          <button id="signout-button" onClick="handleSignoutClick()">Sign Out</button>
+            <form id="time-entry">
+              <!-- <label id="contributer-label" for="resource">Contributer:</label> -->
+              <input placeholder="Contributor Name:" name="resource" id="resource"></input>
+              
+              <div class="form-date-container">
+                <label id="date-label" for="date">Date:</label>
+                <input id="date" type="date"></input>
+              </div>
+              
+              <div class="form-startTime-container">
+                <label id="stopTime-label" for="startTime">Start Time: </label>
+                <input id="startTime" type="time"></input>
+              </div>
 
-            <label for="date">Date:</label>
-            <input id="date" type="date"></input>
+              <div class="form-stopTime-container">
+                <label id="stopTime-label" for="stopTime">Stop Time:</label>
+                <input id="stopTime" type="time"></input>
+              </div>
+              
+              <select name="projectName" id="projectName">
+                <option value="none">Choose Project</option>
+                <option value="Atlas">Atlas</option>
+                <option value="Yedian">Yedian</option>
+              </select>
 
+              <input placeholder="Activity:" id="activity" type="text"></input>
 
-            <label for="startTime">Start Time: </label>
-            <input id="startTime" type="time"></input>
-
-            <label for="stopTime">Stop Time:</label>
-            <input id="stopTime" type="time"></input>
-
-            <label for="project-name">Project Name:</label>
-            <select name="projectName" id="projectName">
-              <option>Atlas</option>
-              <option>Yedian</option>
-            </select>
-
-            <label>Activity:</label>
-            <input id="activity" type="text"></input>
-
-            <label>Task Name:</label>
-            <select name="taskName" id="taskName">
-              <option>React-Native</option>
-              <option>Setup</option>
-              <option>Planning</option>
-              <option>Processing</option>
-              <option>Recruitment</option>
-              <option>Core-Model</option>
-            </select>
-            <input type="button" name="submit" onClick="submitForm()" value="Submit" />
-          </form>
+              <select name="taskName" id="taskName">
+                <option value="none">Choose Task Name:</option>
+                <option value="React-Native">React-Native</option>
+                <option value="Setup">Setup</option>
+                <option value="Planning">Planning</option>
+                <option value="Processing">Processing</option>
+                <option value="Recruitment">Recruitment</option>
+                <option value="Core-Model">Core-Model</option>
+              </select>
+              <input id="submit-button" type="button" name="submit" onClick="submitForm()" value="Submit" />
+            </form>
+          </div>
+          <div id="root"></div>
         </div>
-        <div id="root"></div>
       </div>
 
     <script async defer src="https://apis.google.com/js/api.js" 
       onload="this.onload=function(){};handleClientLoad()" 
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+    <script>
+    window.onload = function() {
+      document.getElementById('date').valueAsDate = new Date();
+      var stop = document.getElementById('stopTime')
+      stop.valueAsNumber = new Date().getHours();
+      console.log(stop);
+      console.log(new Date().getHours());
+    }
+    
+    </script>
   </body>
 </html>
+
+
+      
+

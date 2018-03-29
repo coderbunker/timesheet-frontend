@@ -1,15 +1,14 @@
 body {
 	text-align: center;
+	background: radial-gradient(circle at 100%, #007fff, #ffffff 50%, #007fff 75%, #ffffff 85%);
 }
 .container {
 	display: inline-flex;
-	border: 2px solid black;
 	width: 50%;
 }
 
 .time-entry-widget {
-	width: 50%;
-	border: 2px solid black;
+	width: 100%;
 }
 
 #root {
@@ -17,7 +16,6 @@ body {
 }
 
 .dashboard {
-  border: 2px solid black;
   width: 100%;
 }
 
@@ -29,4 +27,162 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+	.main-container {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	#banner-wrapper {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		text-align: center;
+	}
+
+	/*#banner-film {
+		display: flex;
+		position: absolute;
+		width: 100%;
+		height: 120px;
+		background-color: rgba(0, 0, 0, 0.2);
+	}*/
+	
+	#app-name {
+		position: relative;
+		width: 50%;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 3%;
+		margin-bottom: 3%;
+		font-family: 'Montserrat', sans-serif;
+	}
+		
+	#banner {
+		position: relative;
+		background-image: url('http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,f_auto,h_630,q_90,w_1200/v1/775700/coderbunker-transparent_z2njbv.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 50%;
+		margin: 0 auto;
+		height: 120px;
+	}
+	
+		
+
+	.time-entry-container {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	form label {
+		text-align: left;
+	}
+
+	#date-label {
+		font-size: 25px;
+		font-family: 'Montserrat', sans-serif;
+		margin-right: 12px;
+	}
+	
+	#date {
+		width: 70%;
+	}
+
+	#startTime-label {
+		font-size: 25px;
+		font-family: 'Montserrat', sans-serif;
+
+	}
+
+	#stopTime-label {
+		font-size: 25px;
+		font-family: 'Montserrat', sans-serif;
+		margin-right: 12px;
+	}
+
+	#resource, #date, #startTime, #stopTime, #activity, #taskName, #projectName {
+		font-size: 25px;
+		margin: 2% 0;
+		border-radius: 10px;
+	}
+	
+	#authorize-button {
+		font-size: 32px;
+		width: 50%;
+		margin: 0 auto;
+		background-color: rgba(5, 54, 86, 0.8);
+		border-radius: 12.5px;
+		font-family: 'Montserrat', sans-serif;
+	}	
+		
+	#signout-button {
+		font-size: 32px;
+		width: 50%;
+		margin: 0 auto;
+		margin-bottom: 10px;
+		background-color: rgba(225, 33, 40, 0.99);
+		border-radius: 12.5px;	
+		font-family: 'Montserrat', sans-serif;
+	}	
+
+	#submit-button {
+		font-size: 32px;
+		width: 50%;
+		margin: 0 auto;
+		background-color: rgba(5, 180, 56, 0.8);
+		border-radius: 12.5px;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+
+
+	#root {
+		width: 100%;
+	}
+
+	form {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.dashboard {
+		border-top: 3px dashed black;
+		margin-top: 5%;
+	}
+
+	.dashboard h3 {
+		font-size: 30px;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	#welcome {
+		font-size: 30px;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	#project-ul {
+
+	}
+
+	#project-li {
+		margin: 0;
+		padding: 0;
+		font-size: 30px;
+		list-style-type: none;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	#p-li {
+		font-size: 20px;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+
+
 }
