@@ -1,33 +1,70 @@
+* {
+	box-sizing: border-box;
+	/*border: 1px solid black;*/
+}
+
 body {
 	text-align: center;
-	background: radial-gradient(circle at 100%, #007fff, #ffffff 50%, #007fff 75%, #ffffff 85%);
+	background-color: #48a8f2; 
+
 }
-.container {
-	display: inline-flex;
+
+.main-container {
+	/*border: 2px solid pink;*/
+}
+
+/*.time-entry-container {
+	display: flex;
+	width: 70%;
+	margin: 0 auto;
+	border: 2px solid pink;
+}
+*/
+/*.time-entry-widget {
+	margin: 0 auto;
 	width: 50%;
+	border: 5px solid aqua;
+}*/
+
+/*#banner {
+	position: relative;
+	background-image: url('http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,f_auto,h_630,q_90,w_1200/v1/775700/coderbunker-transparent_z2njbv.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 30%;
+	margin: 0 auto;
+	margin-top: 3%;
+	height: 120px;
+}
+
+#app-name {
+	display: inline-block;
+	font-size: 30px;
+	margin: 1%;
 }
 
 .time-entry-widget {
-	width: 100%;
+	border: 1px solid black;
 }
 
 #root {
-	width: 50%;
+	border: 1px solid black;
 }
 
 .dashboard {
-  width: 100%;
+	border: 2px solid pink;
 }
 
 .dashboard h3 {
 	text-align: center;
+	display: inline-block;
 }
 
 form {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
+}*/
 
 @media screen and (max-width: 425px) {
 	.main-container {
@@ -53,10 +90,10 @@ form {
 	
 	#app-name {
 		position: relative;
+		font-size: 35px;
 		width: 50%;
-		margin: 0 auto;
+		margin: 5% auto;
 		text-align: center;
-		margin-top: 3%;
 		margin-bottom: 3%;
 		font-family: 'Montserrat', sans-serif;
 	}
@@ -68,8 +105,10 @@ form {
 		background-repeat: no-repeat;
 		width: 50%;
 		margin: 0 auto;
+		margin-top: 5%;
 		height: 120px;
 	}
+		
 	
 		
 
@@ -91,7 +130,7 @@ form {
 	}
 	
 	#date {
-		width: 70%;
+		width: 71%;
 	}
 
 	#startTime-label {
@@ -153,7 +192,7 @@ form {
 
 	.dashboard {
 		border-top: 3px dashed black;
-		margin-top: 5%;
+		margin-top: 8%;
 	}
 
 	.dashboard h3 {
@@ -167,12 +206,17 @@ form {
 	}
 
 	#project-ul {
-
+		/*text-align: center;*/
+		/*width: 100%;*/
 	}
 
 	#project-li {
-		margin: 0;
-		padding: 0;
+		display: inline-block;
+		width: 90%;
+		border: 1px solid black;
+		border-radius: 15px;
+		background-color: #fef4f0;
+		margin: 3% 10% 0 0;
 		font-size: 30px;
 		list-style-type: none;
 		font-family: 'Montserrat', sans-serif;

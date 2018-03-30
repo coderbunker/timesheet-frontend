@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ProjectView from './containers/ProjectView';
+// import ProjectView from './containers/ProjectView';
 import TimeView from './containers/TimeView';
 
 class App extends Component {

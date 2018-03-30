@@ -51,12 +51,10 @@
       var name;
       
       function handleClientLoad() {
-        console.log('handle client load')
         // Load the API client and auth2 library
         gapi.load('client:auth2', initClient);
       }
       function initClient() {
-        console.log('client init')
         gapi.client.init({
             apiKey: apiKey,
             discoveryDocs: discoveryDocs,
@@ -89,15 +87,12 @@
       function onSignIn(googleUser) {
         var profile = googleUser.currentUser.get().getBasicProfile();
         name = profile.getGivenName()
-        console.log(name)
       };
 
       function handleAuthClick(event) {
-        console.log('handle auth click')
         gapi.auth2.getAuthInstance().signIn();
       }
       function handleSignoutClick(event) {
-        console.log('handle sign out click')
         gapi.auth2.getAuthInstance().signOut();
       }
       // Load the API and make an API call. 
@@ -126,17 +121,8 @@
         //want to be able to keep the date(and some other fields) during reset()
         
         document.getElementById('date').valueAsDate = new Date().getTimezoneOffset();
-        console.log('hello')
         alert('time data succussfully added to spreadsheet')
-        
-        
         return false;
-      }
-
-      console.log(name)
-      window.onload = function() {
-        document.getElementById('resource').innerHTML = name
-        document.getElementById('resource').value = name
       }
         
     </script>
@@ -204,11 +190,23 @@
     <script>
     window.onload = function() {
       document.getElementById('date').valueAsDate = new Date();
-      var stop = document.getElementById('stopTime')
-      stop.valueAsNumber = new Date().getHours();
-      console.log(stop);
-      console.log(new Date().getHours());
+      var hours = new Date().getHours();
+      var stop = document.getElementById('stopTime');
+      var start = document.getElementById('startTime');
+      var result = formatHours(hours)
+      start.value = result
+      stop.value = result;
+      
+      function formatHours(h) {
+        return h + ":" + 0 + 0 + ":" + 0 + 0 
+      }
     }
+
+    document.getElementById('resource').innerHTML = window.name
+    document.getElementById('resource').value = window.name
+
+
+      
     
     </script>
   </body>

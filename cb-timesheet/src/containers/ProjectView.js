@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+// import moment from 'moment';
 import { Link } from 'react-router-dom'
 
-const query = `query: {
 
-}`;
-
-export  default class ProjectView extends Component {
+export default class ProjectView extends Component {
   render () {
     return (
     	<div>
